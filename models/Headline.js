@@ -1,23 +1,23 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
-var HeadlineSchema = new Schema ({
-    title: {
-        type: String,
-        required: true
-    },
+var HeadlineSchema = new Schema({
+  title: {
+    type: String,
+    required: true
+  },
 
-    link: {
-        type: String,
-        required: true
-    },
+  link: {
+    type: String,
+    required: true
+  },
 
-    note: {
-        type: Schema.Types.ObjectId,
-        ref: "Note"
-    }
+  note: {
+    type: Schema.Types.ObjectId,
+    ref: "Note"
+  }
 });
 
-var Article = mongoose.model("Headline", HeadlineSchema);
+var Headline = mongoose.model("Headline", HeadlineSchema);
 
-module.exports = Article;
+module.exports = Headline;
