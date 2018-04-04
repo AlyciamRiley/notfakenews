@@ -1,16 +1,22 @@
-// var path = require("path");
+var path = require("path");
 
-// module.exports = function(app) {
+module.exports = function(app){
 
-//     //this route goes to the main page
-//     app.get("/", function(req, res) {
-//         res.sendFile(path.join(__dirname, "../views/home.handlebars"));
-//     });
+// app.get("/", function(req, res) {
+//     res.sendFile(path.join(__dirname, "../views/layout/main"));
+// });
 
-//     //This route goes to saved articles
-//     app.get("/saved", function(req, res) {
-//         res.sendFile(path.join(__dirname, "../views/saved.handlebars"))
-//     })
 
-    
-// }
+app.get("/", function (req, res) {
+    res.render("home");
+  });
+
+};
+
+// app.get("/", function (req, res) {
+//     // If the user already has an account send them to the members page
+//     if (req.user) {
+//       res.redirect("/members");
+//     }
+//     res.render("signUp");
+//   });

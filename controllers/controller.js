@@ -1,6 +1,5 @@
 //Dependencies
 var express = require('express');
-var router = express.Router();
 var path = require('path');
 
 //require request and cheerio to scrape
@@ -11,6 +10,7 @@ var cheerio = require('cheerio');
 var Headline = require('../models/Headline');
 var Note = require("../models/note");
 
+//set up express app
 
 
 //a GET request to scrape The Onion

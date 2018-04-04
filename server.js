@@ -1,7 +1,12 @@
 //Set up dependencies
 var express = require("express");
 var bodyParser = require("body-parser");
+var logger = require("morgan");
 var mongoose = require("mongoose");
+
+
+//scraping tools
+var axios = require("axios");
 var cheerio = require("cheerio");
 
 // Require all models
@@ -12,8 +17,19 @@ var PORT = 3000;
 //Initial Express
 var app = express();
 
-//Configure Middleware
+// Set Handlebars.
+var exphbs = require("express-handlebars");
 
+app.engine("handlebars", exphbs({
+    defaultLayout: "main"
+}));
+app.set("view engine", "handlebars");
+
+
+//Use morgan logger for logging requests
+app.use(logger("dev"));
+
+//Use body-parser for handling form submissions
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.static("public"));
 
@@ -23,8 +39,12 @@ app.use(express.static("public"));
 // Connect to the Mongo DB
 mongoose.Promise = Promise;
 mongoose.connect("mongodb://localhost/mongoHeadlines", {
-
 });
+
+// Routes
+// =============================================================
+require("./routes/htmlroutes.js")(app);
+
 
 
 
