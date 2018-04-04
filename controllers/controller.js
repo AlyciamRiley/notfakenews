@@ -16,24 +16,26 @@ var db = require("../models");
 //a GET request to scrape The Onion
 
 module.exports = function(app) {
-  app.get("/scrape", function(req, res) {
-    axios.get("https://www.theonion.com/").then(function(response) {
-      //loads information pulled from above into a shorthand selector
-      var $ = cheerio.load(response.data);
+    app.get("/scrape", function(req, res) {
+        // First, we grab the body of the html with request
+        axios.get("http://www.echojs.com/").then(function(response) {
+          // Then, we load that into cheerio and save it to $ for a shorthand selector
+          var $ = cheerio.load(response.data);
+      
+          // Now, we grab every h2 within an article tag, and do the following:
+          $("article h2").each(function(i, element) {
+            // Save an empty result object
+            var result = {};
+      
+            // Add the text and href of every link, and save them as properties of the result object
+            result.title = $(this)
+              .children("a")
+              .text();
+            result.link = $(this)
+              .children("a")
+              .attr("href");
 
-      //Grabs everything with js_entry_link element with an A tag and saves it to an empty result object
-      $("a.js_entry-link").each(function(i, element) {
-        var result = {};
-
-        //adds text and title of every link.
-        result.title = $(this)
-          .children("a")
-          .text();
-        result.link = $(this)
-          .children("a")
-          .attr("href");
-
-        //create new article with "result" object built from scraping
+        //create new article with "result" object built from scraping,
         db.Headline.create(result)
           .then(function(dbHeadline) {
             //view added result in console
