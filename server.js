@@ -44,6 +44,7 @@ mongoose.connect("mongodb://localhost/mongoHeadlines", {
 // Routes
 // =============================================================
 require("./routes/htmlroutes.js")(app);
+require("./controllers/controller.js")(app);
 
 
 

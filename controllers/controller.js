@@ -6,14 +6,22 @@ var path = require('path');
 var request = require('request');
 var cheerio = require('cheerio');
 
+//scraping tools
+var axios = require("axios");
+
+
 //Require models
-var Headline = require('../models/Headline');
-var Note = require("../models/note");
+var db = require("../models");
 
 //set up express app
 
 
 //a GET request to scrape The Onion
+
+var path = require("path");
+
+module.exports = function(app){
+
 
 app.get("/scrape", function(req, res) {
     axios.get("https://www.theonion.com/").then(function(response){
@@ -46,6 +54,7 @@ app.get("/scrape", function(req, res) {
         res.send("Scrape Complete");
     });
 });
+}
 
 //a GET request to populate page with every article
 
