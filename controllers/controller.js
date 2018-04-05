@@ -39,14 +39,13 @@ module.exports = function(app) {
         db.Headline.create(result)
           .then(function(dbHeadline) {
             //view added result in console
-            console.log("dbHeadline", dbHeadline);
-          })
-          .catch(function(err) {
-            return res.json(err);
+    
+             res.render("home", {headline: dbHeadline});
+
           });
       });
 
-      res.send("Scrape Complete");
+      
     });
   });
 };
