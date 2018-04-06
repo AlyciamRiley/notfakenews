@@ -1,5 +1,6 @@
+<div class="navbar-fixed">
 <nav>
-  <div class="nav-wrapper">
+  <div class="nav-wrapper brown darken-3">
     <a href="#" class="brand-logo">Not Fake News</a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li>
@@ -12,22 +13,27 @@
         <a href="collapsible.html">Scrape new articles!</a>
       </li>
     </ul>
-
-    <img src="../assets/images/newspaper.jpg" width="100%" height="auto">
-
-
 </nav>
 </div>
+
 <div class="container">
   <div id="articles">
     {{#each headline}}
-    <div class="card {{this.id}}" style="width: 18rem;">
+    <div class="card {{this.id}}" style="width: 60rem;">
 
-      <div class="card-body">
-        <h5 class="card-title">{{this.title}}</h5>
-        <p class="card-text"></p>
+      <div class="card-body  pink lighten-5" id="card">
+        
+        <h5 class="card-title  brown lighten-1 ">{{this.title}}
+          
+        </h5>
+        
         <a href="#" class="card-link">{{this.link}}</a>
       </div>
     </div>
     {{/each}}
   </div>
+  </div>
+
+
+
+  

@@ -16,7 +16,7 @@ var db = require("../models");
 //a GET request to scrape news source
 module.exports = function (app) {
 
-
+//Grabs all articles from DB
   app.get("/", function(req, res) {
     db.Headline.find({})
     .then(function(dbHeadline) {
@@ -28,6 +28,7 @@ module.exports = function (app) {
     });
   });
 
+  //Scrape function 
     app.get("/scrape", function(req, res) {
         // First, we grab the body of the html with request
         axios.get("http://www.echojs.com/").then(function(response) {
@@ -58,7 +59,7 @@ module.exports = function (app) {
           });
       });
 
-      //Route for getting all articles from the db
+
 
 
 
