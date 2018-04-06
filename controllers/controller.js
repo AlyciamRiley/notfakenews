@@ -16,7 +16,7 @@ var db = require("../models");
 //a GET request to scrape news source
 module.exports = function (app) {
 
-//Grabs all articles from DB
+//Grabs all articles from DB and populate main page with every article
   app.get("/", function(req, res) {
     db.Headline.find({})
     .then(function(dbHeadline) {
@@ -58,22 +58,33 @@ module.exports = function (app) {
             return res.json
           });
       });
-
-
-
-
-
-
-
-
-    
-      
     });
   });
+
+//POST a new article
+
+app.post("/headlines/:id", function(req, res) {
+    db.Headline.create(req.body)
+    .then(function(dbHeadline) {
+      return db.Headline.findOneAndUpdate({ _id: req.params.id },
+        { note: dbNote._id}, {new: true});
+      })
+      .then(function(dbHeadline) {
+        res.json(dbHeadline);
+        console.log("saved headline", dbHeadline)
+      })
+      .catch(function(err) {
+        res.json(err);
+      });
+  
+});
+
+
+
 
 }
 
 
-//a GET request to populate page with every article
+
 
 //a POST request to create new comment
