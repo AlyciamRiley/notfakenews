@@ -13,9 +13,21 @@ var db = require("../models");
 
 //set up express app
 
-//a GET request to scrape The Onion
+//a GET request to scrape news source
+module.exports = function (app) {
 
-module.exports = function(app) {
+
+  app.get("/", function(req, res) {
+    db.Headline.find({})
+    .then(function(dbHeadline) {
+      return res.render("home", {headline: dbHeadline});
+      console.log(dbHeadline);
+    })
+    .catch(function(err) {
+      res.json(err);
+    });
+  });
+
     app.get("/scrape", function(req, res) {
         // First, we grab the body of the html with request
         axios.get("http://www.echojs.com/").then(function(response) {
@@ -39,16 +51,27 @@ module.exports = function(app) {
         db.Headline.create(result)
           .then(function(dbHeadline) {
             //view added result in console
-    
-             res.render("home", {headline: dbHeadline});
+            console.log(dbHeadline);
 
+          }).catch(function(err) {
+            return res.json
           });
       });
 
+      //Route for getting all articles from the db
+
+
+
+
+
+
+    
       
     });
   });
-};
+
+}
+
 
 //a GET request to populate page with every article
 
