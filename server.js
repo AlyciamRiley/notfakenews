@@ -11,7 +11,7 @@ var cheerio = require("cheerio");
 // Require all models
 var db = require("./models/index.js");
 
-var PORT = 3000;
+var PORT = process.env.PORT || 3000;
 
 //Initial Express
 var app = express();
@@ -43,7 +43,9 @@ app.use(express.static("public"));
 var MONGODB_URI =
   process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI, {});
+mongoose.connect(MONGODB_URI, {
+
+});
 
 // Routes
 // =============================================================

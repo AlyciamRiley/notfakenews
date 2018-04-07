@@ -1,7 +1,7 @@
 var db = require("../models/index.js");
 var express = require("express");
 
-
+//Scraping tools
 var axios = require("axios");
 var cheerio = require("cheerio");
 
