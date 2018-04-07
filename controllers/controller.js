@@ -16,68 +16,52 @@ var db = require("../models");
 //a GET request to scrape news source
 module.exports = function (app) {
 
-//Grabs all articles from DB and populate main page with every article
-  app.get("/", function(req, res) {
+  //Grabs all articles from DB and populate main page with every article
+  app.get("/", function (req, res) {
     db.Headline.find({})
-    .then(function(dbHeadline) {
-      return res.render("home", {headline: dbHeadline});
-      console.log(dbHeadline);
-    })
-    .catch(function(err) {
-      res.json(err);
-    });
+      .then(function (dbHeadline) {
+        return res.render("home", {
+          headline: dbHeadline
+        });
+        console.log(dbHeadline);
+      })
+      .catch(function (err) {
+        res.json(err);
+      });
   });
 
   //Scrape function 
-    app.get("/scrape", function(req, res) {
-        // First, we grab the body of the html with request
-        axios.get("http://www.echojs.com/").then(function(response) {
-          // Then, we load that into cheerio and save it to $ for a shorthand selector
-          var $ = cheerio.load(response.data);
-      
-          // Now, we grab every h2 within an article tag, and do the following:
-          $("article h2").each(function(i, element) {
-            // Save an empty result object
-            var result = {};
-      
-            // Add the text and href of every link, and save them as properties of the result object
-            result.title = $(this)
-              .children("a")
-              .text();
-            result.link = $(this)
-              .children("a")
-              .attr("href");
+  app.get("/scrape", function (req, res) {
+    // First, we grab the body of the html with request
+    axios.get("http://www.echojs.com/").then(function (response) {
+      // Then, we load that into cheerio and save it to $ for a shorthand selector
+      var $ = cheerio.load(response.data);
+
+      // Now, we grab every h2 within an article tag, and do the following:
+      $("article h2").each(function (i, element) {
+        // Save an empty result object
+        var result = {};
+
+        // Add the text and href of every link, and save them as properties of the result object
+        result.title = $(this)
+          .children("a")
+          .text();
+        result.link = $(this)
+          .children("a")
+          .attr("href");
 
         //create new article with "result" object built from scraping,
         db.Headline.create(result)
-          .then(function(dbHeadline) {
+          .then(function (dbHeadline) {
             //view added result in console
             console.log(dbHeadline);
 
-          }).catch(function(err) {
+          }).catch(function (err) {
             return res.json
           });
       });
     });
   });
-
-//POST a new article
-
-app.post("/headlines/:id", function(req, res) {
-    db.Headline.create(req.body)
-    .then(function(dbHeadline) {
-      return db.Headline.findOneAndUpdate({ _id: req.params.id },
-        { note: dbNote._id}, {new: true});
-      })
-      .then(function(dbHeadline) {
-        res.json(dbHeadline);
-        console.log("saved headline", dbHeadline)
-      })
-      .catch(function(err) {
-        res.json(err);
-      });
-  
-});
 
 
 
