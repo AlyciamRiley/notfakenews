@@ -9,7 +9,7 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 
 // Require all models
-var db = require("./models");
+var db = require("./models/index.js");
 
 var PORT = 3000;
 
@@ -26,6 +26,9 @@ app.engine(
   })
 );
 app.set("view engine", "handlebars");
+// app.get("/", function (req, res) {
+//   res.render('index');
+// });
 
 //Use morgan logger for logging requests
 app.use(logger("dev"));
@@ -44,8 +47,8 @@ mongoose.connect(MONGODB_URI, {});
 
 // Routes
 // =============================================================
-require("./routes/htmlroutes.js")(app);
-require("./controllers/controller.js")(app);
+require("./routes/api.js")(app);
+require("./routes/view.js")(app);
 
 // Start the server
 app.listen(PORT, function() {
