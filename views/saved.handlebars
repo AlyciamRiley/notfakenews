@@ -1,1 +1,18 @@
-saved articles
+  <div class="container">
+    <div id="articles">
+      {{#each headline}}
+      <div class="card {{this.id}}" style="width: 50rem;">
+        <div class="card-body pink lighten-5" id="card">
+
+          <h5 class="card-title brown darken-1 ">{{this.title}}
+            <a class="waves-effect waves-light btn-small pink lighten-5" id="save-btn" data-id={{this.id}} data-title={{this.title}}>
+              <i class="material-icons left small">favorite_border</i>Save</a>
+
+          </h5>
+
+          <a href="{{this.link}}" class="card-link">{{this.link}}</a>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>

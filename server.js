@@ -51,6 +51,7 @@ mongoose.connect(MONGODB_URI, {
 // =============================================================
 require("./routes/api.js")(app);
 require("./routes/view.js")(app);
+require("./routes/saved.js")(app);
 
 // Start the server
 app.listen(PORT, function() {

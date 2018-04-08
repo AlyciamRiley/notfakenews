@@ -2,5 +2,6 @@
 
 module.exports = {
   Api: require("./api"),
-  View: require("./view")
+  View: require("./view"),
+  Saved: require("./saved")
 };
