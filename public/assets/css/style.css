@@ -14,28 +14,39 @@ body {
   background-color: #d7ccc8;
 }
 
-
 .container {
   margin-left: 5rem;
 }
-    
 
 .brand-logo {
   font-family: "logo", sans-serif;
+  color: #ebe5e2;
 }
 
-.material-icons {
+.material-icons,
+.save {
   font-size: 1rem;
   color: #4e342e;
+}
+
+.btn-small {
+  float: right;
 }
 
 .card-title {
   padding: 1rem;
   font-size: 12px;
-  color: #bcaaa4;
+  color: #ebe5e2;
 }
 
-/* #save-btn {
-  color: #4e342e;
-  float: right;
-} */
+/* unvisited link */
+
+.card-link {
+  color: #ebe5e2;
+}
+
+/* mouse over link */
+
+.card-link:hover {
+  color: #fce4ec;
+}

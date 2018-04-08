@@ -34,7 +34,9 @@ app.set("view engine", "handlebars");
 app.use(logger("dev"));
 
 //Use body-parser for handling form submissions
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 app.use(express.static("public"));
 
 // By default mongoose uses callbacks for async queries, we're setting it to use promises (.then syntax) instead
@@ -54,6 +56,6 @@ require("./routes/view.js")(app);
 require("./routes/saved.js")(app);
 
 // Start the server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log("App running on port " + PORT);
 });

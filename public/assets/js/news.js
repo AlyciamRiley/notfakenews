@@ -1,6 +1,7 @@
 //POST a saved article
-$("#save-btn").on("click", function(event) {
-    console.log("Submit is working")
+$(".btn-small").on("click", function (event) {
+    console.log("Submit is working");
+
     var thisId = $(this).attr("data-id");
     var thisTitle = $(this).attr("data-title");
 
@@ -8,9 +9,9 @@ $("#save-btn").on("click", function(event) {
         method: "POST",
         url: "/saved/" + thisId,
         data: {
-            title: thisTitle, 
+            title: thisTitle,
             body: "test"
         }
 
-        });
+    });
 });
