@@ -1,3 +1,4 @@
+/* ----Fonts---- */
 @font-face {
   font-family: "logo";
   src: url("Cantarell-Bold-webfont.woff") format("woff");
@@ -5,6 +6,7 @@
   font-style: normal;
 }
 
+/* ----General---- */
 body {
   background-image: url("../images/newstand.jpg");
   background-repeat: no-repeat;
